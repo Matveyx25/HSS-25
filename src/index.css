@@ -6,3 +6,9 @@ body {
 * {
 	box-sizing: border-box;
 }
+.wrapper{
+	padding: 60px 40px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}

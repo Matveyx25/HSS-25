@@ -1,18 +1,15 @@
-import { useEffect, useState } from "react"
-import { Button } from "./components/button/button"
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { HomePage } from "./pages/home-page"
+import { PostPage } from "./pages/post-page"
 
 function App() {
-	const [value, setValue] = useState(0)
-
-	useEffect(() => {
-		console.log('MAKE V8 GREAT AGAIN')
-	}, [value])
-
   return (
-		<div className=''>
-			Hello
-			<Button label={value} onClick={() => setValue((prev) => prev + 1)} название="имя"/>
-		</div>
+		<BrowserRouter>
+			<Routes>
+				<Route path="/" element={<HomePage/>}/>
+				<Route path="/post/:postId" element={<PostPage/>}/>
+			</Routes>
+		</BrowserRouter>
 	)
 }
 
