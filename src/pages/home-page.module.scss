@@ -1,17 +1,12 @@
 .page {
 	min-height: 100vh;
-	padding: 32px;
 }
 
 .shell {
-	max-width: 1640px;
 	margin: 0 auto;
 	background: rgba(255, 255, 255, 0.88);
 	border: 1px solid rgba(15, 23, 42, 0.08);
-	border-radius: 36px;
 	overflow: hidden;
-	box-shadow: 0 24px 80px rgba(148, 163, 184, 0.18);
-	backdrop-filter: blur(18px);
 }
 
 .topbar {
@@ -179,7 +174,7 @@
 	display: grid;
 	grid-template-columns: minmax(0, 1fr) ;
 	gap: 28px;
-	padding: 0 40px 40px;
+	padding: 40px;
 }
 
 .sectionHeader {

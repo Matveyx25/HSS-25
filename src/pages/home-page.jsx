@@ -1,29 +1,12 @@
-import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { api } from '../services'
 import { Card } from '../components/post-card/post-card'
-import { useQuery } from '@tanstack/react-query'
 import s from './home-page.module.scss'
-
-const formatDate = (id) => {
-	const date = new Date(2014 + (id % 11), (id * 2) % 12, 3 + (id % 24))
-	return date.toLocaleDateString('en-US', {
-		month: 'long',
-		day: 'numeric',
-		year: 'numeric',
-	})
-}
+import { usePosts } from '../hooks/usePosts'
 
 export const HomePage = () => {
-	const {data, isFetched} = useQuery({
-		queryKey: ['posts'],
-		queryFn: api.getPosts,
-	})
+	const {data, isFetched} = usePosts()
 
 	if(!isFetched) return <div className={s.page}>Loading...</div>
-
-	const featuredPosts = data?.slice(0, 3) ?? []
-	const latestPosts = data?.slice(3, 6) ?? []
 
 	return (
 		<div className={s.page}>
