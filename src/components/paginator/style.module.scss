@@ -1,0 +1,41 @@
+.wrapper{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 16px;
+	padding: 32px 0;
+	.button{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 8px;
+		cursor: pointer;
+		width: 24px;
+		height: 24px;
+		font-size: 16px;
+		color: #1f1f1f;
+		border: none;
+		background: none;
+		outline: none;
+		transition: .4s;
+		&:hover{
+			opacity: .6;
+		}
+		&.disabled{
+			opacity: 0.4;
+			cursor: not-allowed;
+		}
+		&.active{
+			transform: scale(1.05);
+			color: blue;
+		}
+		&.nextButton, &.prevButton{
+			border: 1px solid #eee;
+			background: #fff;
+			border-radius: 8px;
+			width: 32px;
+			height: 32px;
+		}
+	}
+}

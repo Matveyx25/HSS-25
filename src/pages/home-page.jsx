@@ -2,11 +2,21 @@ import { NavLink } from 'react-router-dom'
 import { Card } from '../components/post-card/post-card'
 import s from './home-page.module.scss'
 import { usePosts } from '../hooks/usePosts'
+import { Paginator } from '../components/paginator'
+import { useState } from 'react'
+
+const MIN_PAGE = 0
+const ITEMS_COUNT = 10
 
 export const HomePage = () => {
-	const {data, isFetched} = usePosts()
+	const [pageCount] = useState(5)
+	const [currentPage, setCurrentPage] = useState(MIN_PAGE)
 
-	if(!isFetched) return <div className={s.page}>Loading...</div>
+	const {data, isFetched} = usePosts({
+		limit: ITEMS_COUNT,
+		// limit: MIN_PAGE + (currentPage + 1) * ITEMS_COUNT,
+		offset: MIN_PAGE + currentPage * ITEMS_COUNT
+	})
 
 	return (
 		<div className={s.page}>
@@ -38,10 +48,16 @@ export const HomePage = () => {
 						</div>
 
 						<div className={s.grid}>
-							{data?.map((el) => (
+							{isFetched ? data?.map((el) => (
 								<Card key={el.id} post={el}/>
-							))}
+							)) : 'Loading...'}
 						</div>
+
+						<Paginator {...{
+							currentPage, 
+							setCurrentPage, 
+							pageCount, 
+							MIN_PAGE}}/>
 					</main>
 				</div>
 			</div>
