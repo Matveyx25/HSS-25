@@ -15,12 +15,14 @@
     "@tanstack/react-query": "^5.90.21",
     "axios": "^1.13.5",
     "classnames": "^2.5.1",
+    "formik": "^2.4.9",
     "gravatar": "^1.8.2",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-router-dom": "^7.13.1",
     "sass": "^1.97.3",
-    "supabase": "^2.85.0"
+    "supabase": "^2.85.0",
+    "yup": "^1.7.1"
   },
   "devDependencies": {
     "@types/react": "^19.2.5",

@@ -9,12 +9,10 @@ const MIN_PAGE = 0
 const ITEMS_COUNT = 10
 
 export const HomePage = () => {
-	const [pageCount] = useState(5)
 	const [currentPage, setCurrentPage] = useState(MIN_PAGE)
 
 	const {data, isFetched} = usePosts({
 		limit: ITEMS_COUNT,
-		// limit: MIN_PAGE + (currentPage + 1) * ITEMS_COUNT,
 		offset: MIN_PAGE + currentPage * ITEMS_COUNT
 	})
 
@@ -36,8 +34,8 @@ export const HomePage = () => {
 					</nav>
 
 					<div className={s.actions}>
-						<button className={s.ghostButton} type="button">Sign in</button>
-						<button className={s.primaryButton} type="button">Register</button>
+						<NavLink className={s.ghostButton} to="./sign-in">Sign in</NavLink>
+						<NavLink className={s.primaryButton} to="./sign-up">Register</NavLink>
 					</div>
 				</header>
 				<div className={s.content}>
@@ -48,7 +46,7 @@ export const HomePage = () => {
 						</div>
 
 						<div className={s.grid}>
-							{isFetched ? data?.map((el) => (
+							{isFetched ? data?.data?.map((el) => (
 								<Card key={el.id} post={el}/>
 							)) : 'Loading...'}
 						</div>
@@ -56,8 +54,8 @@ export const HomePage = () => {
 						<Paginator {...{
 							currentPage, 
 							setCurrentPage, 
-							pageCount, 
-							MIN_PAGE}}/>
+							MIN_PAGE}}
+							pageCount={data?.pages}/>
 					</main>
 				</div>
 			</div>

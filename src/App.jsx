@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { HomePage } from "./pages/home-page"
 import { PostPage } from "./pages/post-page"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import { LoginPage } from "./pages/login-page"
 
 export const queryClient = new QueryClient({
 	defaultOptions: {
@@ -19,6 +20,7 @@ function App() {
 				<Routes>
 					<Route path="/" element={<HomePage/>}/>
 					<Route path="/post/:postId" element={<PostPage/>}/>
+					<Route path="/sign-in" element={<LoginPage/>}/>
 				</Routes>
 			</BrowserRouter>
 		</QueryClientProvider>
