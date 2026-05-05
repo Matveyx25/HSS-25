@@ -4,6 +4,7 @@ import s from './home-page.module.scss'
 import { usePosts } from '../hooks/usePosts'
 import { Paginator } from '../components/paginator'
 import { useState } from 'react'
+import { useAuthContext } from '../shared/context/AuthContext'
 
 const MIN_PAGE = 0
 const ITEMS_COUNT = 10
@@ -15,6 +16,8 @@ export const HomePage = () => {
 		limit: ITEMS_COUNT,
 		offset: MIN_PAGE + currentPage * ITEMS_COUNT
 	})
+
+	const {claims, logout} = useAuthContext()
 
 	return (
 		<div className={s.page}>
@@ -33,10 +36,13 @@ export const HomePage = () => {
 						<NavLink className={s.navLink} to="/">Contact</NavLink>
 					</nav>
 
-					<div className={s.actions}>
+					{claims ? <>
+						<button className={s.ghostButton} onClick={() => logout()}>Logout</button>
+					</> :
+						<div className={s.actions}>
 						<NavLink className={s.ghostButton} to="./sign-in">Sign in</NavLink>
 						<NavLink className={s.primaryButton} to="./sign-up">Register</NavLink>
-					</div>
+					</div>}
 				</header>
 				<div className={s.content}>
 					<main>

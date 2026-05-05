@@ -3,27 +3,23 @@ import { HomePage } from "./pages/home-page"
 import { PostPage } from "./pages/post-page"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { LoginPage } from "./pages/login-page"
+import { queryClient } from "./shared/clients/queryClient"
+import { AuthProvider } from "./shared/context/AuthContext"
 
-export const queryClient = new QueryClient({
-	defaultOptions: {
-		queries: {
-			select: res => res.data,
-			retry: 3
-		}
-	}
-})
 
 function App() {
   return (
-		<QueryClientProvider client={queryClient}>
-			<BrowserRouter>
-				<Routes>
-					<Route path="/" element={<HomePage/>}/>
-					<Route path="/post/:postId" element={<PostPage/>}/>
-					<Route path="/sign-in" element={<LoginPage/>}/>
-				</Routes>
-			</BrowserRouter>
-		</QueryClientProvider>
+		<AuthProvider>
+			<QueryClientProvider client={queryClient}>
+				<BrowserRouter>
+					<Routes>
+						<Route path="/" element={<HomePage/>}/>
+						<Route path="/post/:postId" element={<PostPage/>}/>
+						<Route path="/sign-in" element={<LoginPage/>}/>
+					</Routes>
+				</BrowserRouter>
+			</QueryClientProvider>
+		</AuthProvider>
 	)
 }
 

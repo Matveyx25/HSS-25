@@ -2,8 +2,11 @@ import React, { useState } from 'react'
 import s from './login-page.module.scss'
 import { Field, Form, Formik } from 'formik'
 import * as Yup from 'yup'
+import { supabaseClient } from '../shared/clients/supabaseClient';
+import { useAuthContext } from '../shared/context/AuthContext';
 
 export const LoginPage = () => {
+	const {login} = useAuthContext()
 
 	const validateScheme = Yup.object().shape({
     email: Yup.string()
@@ -22,10 +25,8 @@ export const LoginPage = () => {
 			 initialValues={{
 				email: '',
 				password: null
-			}} onSubmit={(values) => {
-					alert(
-`E-mail: ${values?.email}
-Password: ${values?.password}`)
+			}} onSubmit={({email, password}) => {
+				login({email, password})
 			}}>
 				{({errors, isValid, touched}) => (
 					<Form className={s.form}>

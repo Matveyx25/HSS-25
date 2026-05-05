@@ -2,7 +2,7 @@ import axios from "axios";
 
 const instance = axios.create({
 	baseURL: 'https://qywmhkaxwhucmtmvfhpc.supabase.co/functions/v1/',
-	apiKey: import.meta.env.VITE_API_KEY,
+	apiKey: import.meta.env.VITE_SUPABASE_PUBLISH_KEY,
 	headers: {
 		Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF5d21oa2F4d2h1Y210bXZmaHBjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE5MjA4NDMsImV4cCI6MjA4NzQ5Njg0M30.ihJ-ZUGqPGsoHvhBZQi54FEzT3pYTTlWriqP1UDPpzI"
 	}
